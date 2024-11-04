@@ -1,0 +1,1 @@
+BOOKMARK_DIR="bookmarks"
