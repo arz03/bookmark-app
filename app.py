@@ -2,8 +2,9 @@ import os
 import webbrowser
 from config import BOOKMARK_DIR
 
-# Directory to store bookmark folders (txt files), must be set in config.py
-BOOKMARK_DIR = BOOKMARK_DIR
+# Ensure BOOKMARK_DIR is specified in config.py
+if not BOOKMARK_DIR:
+    raise Exception("BOOKMARK_DIR must be set in config.py")
 
 # Create the directory if it doesn't exist
 os.makedirs(BOOKMARK_DIR, exist_ok=True)
@@ -50,6 +51,26 @@ def open_folder_links(folder):
     for link in links:
         webbrowser.open(link)
 
+def select_folder():
+    """Display folders and let user choose one by number."""
+    folders = list_folders()
+    if not folders:
+        print("No folders available.")
+        return None
+    print("Available folders:")
+    for i, folder in enumerate(folders, start=1):
+        print(f"{i}. {folder}")
+    try:
+        choice = int(input("Select a folder by number: ")) - 1
+        if 0 <= choice < len(folders):
+            return folders[choice]
+        else:
+            print("Invalid choice.")
+            return None
+    except ValueError:
+        print("Invalid input.")
+        return None
+
 def main():
     print("Welcome to the Bookmark App!")
     while True:
@@ -69,34 +90,26 @@ def main():
             create_folder(folder)
         
         elif choice == '2':
-            folder = input("Enter folder name: ").strip()
-            if folder not in list_folders():
-                print(f"Folder '{folder}' does not exist.")
-                continue
-            link = input("Enter link to add: ").strip()
-            add_link(folder, link)
+            folder = select_folder()
+            if folder:
+                link = input("Enter link to add: ").strip()
+                add_link(folder, link)
         
         elif choice == '3':
-            folder = input("Enter folder name: ").strip()
-            if folder not in list_folders():
-                print(f"Folder '{folder}' does not exist.")
-                continue
-            link = input("Enter link to remove: ").strip()
-            remove_link(folder, link)
+            folder = select_folder()
+            if folder:
+                link = input("Enter link to remove: ").strip()
+                remove_link(folder, link)
         
         elif choice == '4':
-            folder = input("Enter folder name: ").strip()
-            if folder not in list_folders():
-                print(f"Folder '{folder}' does not exist.")
-                continue
-            view_folder(folder)
+            folder = select_folder()
+            if folder:
+                view_folder(folder)
         
         elif choice == '5':
-            folder = input("Enter folder name: ").strip()
-            if folder not in list_folders():
-                print(f"Folder '{folder}' does not exist.")
-                continue
-            open_folder_links(folder)
+            folder = select_folder()
+            if folder:
+                open_folder_links(folder)
         
         elif choice == '6':
             folders = list_folders()
@@ -115,6 +128,4 @@ def main():
             print("Invalid option. Please try again.")
 
 if __name__ == "__main__":
-    if not BOOKMARK_DIR:
-        raise Exception("BOOKMARK_DIR must be set in config.py")
     main()
