@@ -26,7 +26,7 @@ A simple Bookmark Management Application created by Arjun Sarje. This applicatio
    ```
 
 3. **Configure the Application**:
-   Open `config.py` and set the `BOOKMARK_DIR` variable to your desired directory for storing bookmarks:
+   Rename `exampleconfig.py` to `config.py` and set the `BOOKMARK_DIR` variable to your desired directory for storing bookmarks:
    ```python
    BOOKMARK_DIR = "path/to/your/bookmarks"
    ```
