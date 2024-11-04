@@ -84,6 +84,7 @@ def main():
         print("7. Exit")
         
         choice = input("Choose an option: ").strip()
+        print("_" * 40, end='\n\n')
         
         if choice == '1':
             folder = input("Enter folder name: ").strip()
@@ -118,7 +119,7 @@ def main():
             else:
                 print("Available folders:")
                 for folder in folders:
-                    print(folder)
+                    print(f"\n> {folder}")
         
         elif choice == '7':
             print("Goodbye!")
