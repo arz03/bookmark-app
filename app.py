@@ -115,4 +115,6 @@ def main():
             print("Invalid option. Please try again.")
 
 if __name__ == "__main__":
+    if not BOOKMARK_DIR:
+        raise Exception("BOOKMARK_DIR must be set in config.py")
     main()

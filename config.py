@@ -1,1 +1,0 @@
-BOOKMARK_DIR="C:/Users/dell/Desktop/bookmarks"
