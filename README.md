@@ -15,7 +15,7 @@ A simple Bookmark Management Application created by Arjun Sarje. This applicatio
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/bookmark-app.git
+   git clone https://github.com/arz03/bookmark-app.git
    cd bookmark-app
    ```
 
